@@ -1,23 +1,26 @@
-// Create the button var 2 & 3
-const int button_2 = 2;
-const int button_3 = 3;
+// Create buttons using digital 12 & 13 pins
+const int button1Pin = 13;  
+const int button2Pin = 12; 
 
 void setup() {
-  // put your setup code here, to run once:
-  pinMode(button_2, INPUT_PULLUP);
-  pinMode(button_3, INPUT_PULLUP);
+  
+  pinMode(button1Pin, INPUT_PULLUP);
+  pinMode(button2Pin, INPUT_PULLUP);
   Serial.begin(9600);
+  Serial.println("Transmitter Ready. Press buttons to send data.");
 }
 
 void loop() {
-  //Verify that the signal is set to low
-  if((digitalRead(button_2)) == LOW){
-    Serial.write(1);
-    Serial.println("1");
+  // Send 1
+  if (digitalRead(button1Pin) == LOW) {
+    Serial.write('1');
+    Serial.println("\n Sent: 1");
     delay(300);
   }
-  else if((digitalRead(button_3))==LOW)
-  Serial.write(0);
-  delay(300);
-
+  // Send 0
+  if (digitalRead(button2Pin) == LOW) {
+    Serial.write('0');
+    Serial.println("\n Sent: 0");
+    delay(300);
+  }
 }
